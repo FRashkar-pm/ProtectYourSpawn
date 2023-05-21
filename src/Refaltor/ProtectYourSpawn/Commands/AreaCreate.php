@@ -40,7 +40,7 @@ class AreaCreate extends Command implements PluginOwned
      */
     public function execute(CommandSender $sender, string $commandLabel, array $args)
     {
-        if (!$this->getOwningPlugin()->getServer()->isOp($sender->getName())) {
+        if (!$this->plugin->getServer()->isOp($sender->getName())) {
             if (!$sender->hasPermission('protectyourspawn.create.cmd')) {
                 $sender->sendMessage("§6[§eProtectYourSpawn§6] §cYou don't have permission.");
             }
