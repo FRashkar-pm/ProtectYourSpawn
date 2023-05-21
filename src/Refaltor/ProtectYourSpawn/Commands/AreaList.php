@@ -49,7 +49,7 @@ class AreaList extends Command implements PluginOwned
      */
     public function execute(CommandSender $sender, string $commandLabel, array $args)
     {
-        if (!$this->getOwningPlugin()->getServer()->isOp($sender->getName())) {
+        if (!$this->plugin->getServer()->isOp($sender->getName())) {
             if (!$sender->hasPermission('protectyourspawn.list.cmd')) {
                 $sender->sendMessage("§6[§eProtectYourSpawn§6] §cYou don't have permission.");
             }
@@ -60,7 +60,7 @@ class AreaList extends Command implements PluginOwned
             return;
         }
 
-        $array = $this->getOwningPlugin()->getApi()->cache;
+        $array = $this->plugin->getApi()->cache;
         $buttons = [];
         $arrayValue = [];
         $i = 0;
@@ -116,7 +116,7 @@ class AreaList extends Command implements PluginOwned
                                         $flags['cmd'] = $cmd;
                                         $flags['chat'] = $chat;
                                         $flags['consume'] = $consume;
-                                        $this->getOwningPlugin()->getApi()->setFlagsByName($name, $flags);
+                                        $this->plugin->getApi()->setFlagsByName($name, $flags);
                                         $player->sendMessage("§6[§eProtectYourSpawn§6]§a The area §6$name §ahas been modified with success !");
                                     }
                                 ));
@@ -137,7 +137,7 @@ class AreaList extends Command implements PluginOwned
                                     function (Player $player, bool $response) use ($name) : void
                                     {
                                         if ($response) {
-                                            $this->getOwningPlugin()->getApi()->deleteAreaByName($name);
+                                            $this->plugin->getApi()->deleteAreaByName($name);
                                             $player->sendMessage("§6[§eProtectYourSpawn§6]§a You have deleted the area §6{$name} §a!");
                                         } else $player->sendMessage("§6[§eProtectYourSpawn§6]§a You cancelled the suppression of the zone 6{$name} §a!");
                                     }
